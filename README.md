@@ -1,0 +1,1 @@
+Care Scheduler é um projeto MVC para a disciplina de POO.
