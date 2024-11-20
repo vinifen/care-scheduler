@@ -47,7 +47,7 @@ export default class AppointmentScreen {
         return;
       }
 
-      const cpf = prompt('CPF (sem pontos/traços/espaços): ').trim();
+      const cpf = prompt('CPF (sem pontos/traços/espaços - 11 dígitos): ').trim();
       if (cpf === '0') {
         this.primaryScreen.startScreen();
         return;
