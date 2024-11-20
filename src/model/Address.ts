@@ -1,49 +1,68 @@
 export default class Address {
     private state: string;
     private city: string;
-    private road: string;
-    private number: number;
+    private street: string;
+    private houseNumber: string;
+    private country: string;
 
-    constructor(state: string, city: string, road: string, number: number) {
-        this.state = state;
+    constructor(street: string, housestring: string, city: string, state: string, country: string) {
+        this.street = street;
+        this.houseNumber = housestring;
         this.city = city;
-        this.road = road;
-        this.number = number;
+        this.state = state;
+        this.country = country;  
     }
 
-    
-    public get State(): string {
+    public getState(): string {
         return this.state;
     }
 
-    public set State(value: string) {
-        this.state = value;
+    public setState(state: string): void {
+        this.state = state;
     }
 
-    
-    public get City(): string {
+    public getCity(): string {
         return this.city;
     }
 
-    public set City(value: string) {
-        this.city = value;
+    public setCity(city: string): void {
+        this.city = city;
     }
 
-
-    public get Road(): string {
-        return this.road;
+    public getStreet(): string {
+        return this.street;
     }
 
-    public set Road(value: string) {
-        this.road = value;
+    public setStreet(street: string): void {
+        this.street = street;
     }
 
-    
-    public get Number(): number {
-        return this.number;
+    public getHouseNumber(): string {
+        return this.houseNumber;
     }
 
-    public set Number(value: number) {
-        this.number = value;
+    public setHouseNumber(houseNumber: string): void {
+        this.houseNumber= houseNumber;
+    }
+
+    public getCountry(): string {
+        return this.country;
+    }
+
+    public setCountry(country: string): void {
+        this.country = country;
+    }
+
+    public displayAddress(): void {
+        console.log(`
+            ================================
+            Endereço:
+            ================================
+            Rua: ${this.getStreet()}
+            Número da Casa: ${this.getHouseNumber()}
+            Cidade: ${this.getCity()}
+            Estado: ${this.getState()}
+            País: ${this.getCountry()}
+        `);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@types/prompt-sync": "^4.2.3",
+    "rimraf": "^6.0.1"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
