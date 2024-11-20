@@ -26,7 +26,7 @@ class PrimaryScreen {
     `);
         const prompt = (0, prompt_sync_1.default)();
         const opcao = prompt('Escolha uma opção: ');
-        if (isNaN(Number(opcao)) || Number(opcao) < 0 || Number(opcao) > 4) {
+        if (isNaN(Number(opcao)) || Number(opcao) < 0 || Number(opcao) > 2) {
             console.log("Opção inválida, por favor escolha uma opção entre 0 e 4.");
             return this.startScreen();
         }
