@@ -8,7 +8,6 @@ export default class Router{
   public apCrtl: AppointmentController = new AppointmentController(this.db);
 
   constructor(){
-    console.log("asdfasdf");
     this.initial.startScreen();
   }
 }
