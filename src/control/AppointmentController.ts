@@ -13,7 +13,7 @@ export default class AppointmentController {
     this.db = db;
   }
 
-  public getAddressModel(street: string, houseNumber: string, city: string, state: string, country: string){
+  public getAddressModel(street: string, houseNumber: number, city: string, state: string, country: string){
     return new Address(street, houseNumber, city, state, country);
   }
 

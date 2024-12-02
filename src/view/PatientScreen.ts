@@ -1,16 +1,13 @@
-import PromptSync from "prompt-sync";
 import PrimaryScreen from "./PrimaryScreen";
-import IAppointment from "../model/IAppointment";
 import { BaseScreen } from "./BaseScreen";
-import Appointment from "../model/Appointment";
 
 export default class PatientScreen extends BaseScreen {
-  private primaryScreen: PrimaryScreen;
+  primaryScreen: PrimaryScreen;
 
 
   constructor(primaryScreen: PrimaryScreen) {
+    super(primaryScreen);
     this.primaryScreen = primaryScreen;
-    super();
   }
 
 
