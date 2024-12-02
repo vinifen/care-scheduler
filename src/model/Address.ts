@@ -2,10 +2,10 @@ export default class Address {
     private state: string;
     private city: string;
     private street: string;
-    private houseNumber: string;
+    private houseNumber: number;
     private country: string;
 
-    constructor(street: string, housestring: string, city: string, state: string, country: string) {
+    constructor(street: string, housestring: number, city: string, state: string, country: string) {
         this.street = street;
         this.houseNumber = housestring;
         this.city = city;
@@ -37,11 +37,11 @@ export default class Address {
         this.street = street;
     }
 
-    public getHouseNumber(): string {
+    public getHouseNumber(): number {
         return this.houseNumber;
     }
 
-    public setHouseNumber(houseNumber: string): void {
+    public setHouseNumber(houseNumber: number): void {
         this.houseNumber= houseNumber;
     }
 
