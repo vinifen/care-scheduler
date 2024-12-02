@@ -2,6 +2,7 @@ import promptSync from 'prompt-sync';
 import Router from '../control/Router';
 import AppointmentScreen from './AppointmentScreen';
 import ListScreen from './ListScreen';
+import PatientScreen from './PatientScreen';
 
 export default class PrimaryScreen {
   private appScr!: AppointmentScreen;
@@ -10,8 +11,9 @@ export default class PrimaryScreen {
 
   constructor(router: Router){
     this.router = router;
-    this.appScr = new AppointmentScreen(this, this.router);
+    this.appScr = new AppointmentScreen(this, this.router, this.appScr);
     this.listQr = new ListScreen(this, this.router);
+    this.ptScr = new PatientScreen(this, this.appScr)
   }
 
   public startScreen(): void {
