@@ -17,7 +17,7 @@ export default class AppointmentController {
     return new Address(street, houseNumber, city, state, country);
   }
 
-  public getPatientModel(name: string, cpf: string, age: string){
+  public getPatientModel(name: string, cpf: string, age: number){
     return new Patient(name, cpf, age);
   }
 

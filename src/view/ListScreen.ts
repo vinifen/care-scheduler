@@ -31,7 +31,8 @@ export default class ListQueriesScreen {
         console.log("\nEndereço:");
         console.log(`Rua: ${appointment.address.getStreet()}`);
         console.log(`Número: ${appointment.address.getHouseNumber()}`);
-        console.log(`Cidade: ${appointment.address.getCity()} | Estado: ${appointment.address.getState()}`);
+        console.log(`Cidade: ${appointment.address.getCity()}`);
+        console.log(`Estado: ${appointment.address.getState()}`);
         console.log(`País: ${appointment.address.getCountry()}`);
         
         console.log("\nInformações Médicas:");

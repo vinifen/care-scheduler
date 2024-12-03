@@ -1,9 +1,9 @@
 export default class Patient {
     private name: string;
     private cpf: string;
-    private age: string;
+    private age: number;
 
-    constructor(name: string, cpf: string, age: string) {
+    constructor(name: string, cpf: string, age: number) {
         this.name = name;
         this.cpf = cpf;
         this.age = age;
@@ -25,11 +25,11 @@ export default class Patient {
         this.cpf = cpf;
     }
 
-    public getAge(): string {
+    public getAge(): number{
         return this.age;
     }
 
-    public setAge(age: string): void {
+    public setAge(age: number): void {
         this.age = age;
     }
 

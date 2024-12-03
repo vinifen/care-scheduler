@@ -53,7 +53,7 @@ export default class PrimaryScreen {
         break;
       case 0:
         console.log("Saindo...");
-        break;
+        process.exit(0);
     }
   }
 }

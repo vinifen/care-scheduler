@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Address {
-    constructor(street, housestring, city, state, country) {
+    constructor(street, houseNumber, city, state, country) {
         this.street = street;
-        this.houseNumber = housestring;
+        this.houseNumber = houseNumber;
         this.city = city;
         this.state = state;
         this.country = country;

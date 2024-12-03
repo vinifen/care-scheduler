@@ -32,7 +32,7 @@ export abstract class BaseScreen {
     return true;
   }
 
-  validateNumber(input: string, fieldName: string, minLength: number, maxLength: number): boolean {
+  validateNumber(input: string, fieldName: string): boolean {
     const regex = /^\d+$/;
   
     if (!regex.test(input)) {
@@ -40,12 +40,15 @@ export abstract class BaseScreen {
       return false;
     }
   
+    return true;
+  }
+
+  validationLength(input: string, fieldName: string, minLength: number, maxLength: number): boolean{
     const inputLength = input.length;
     if (inputLength < minLength || inputLength > maxLength) {
       console.log(`Entrada inválida. O campo ${fieldName} deve ter entre ${minLength} e ${maxLength} dígitos.`);
       return false;
     }
-  
     return true;
   }
 }

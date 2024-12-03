@@ -5,9 +5,9 @@ export default class Address {
     private houseNumber: number;
     private country: string;
 
-    constructor(street: string, housestring: number, city: string, state: string, country: string) {
+    constructor(street: string, houseNumber: number, city: string, state: string, country: string) {
         this.street = street;
-        this.houseNumber = housestring;
+        this.houseNumber = houseNumber;
         this.city = city;
         this.state = state;
         this.country = country;  
