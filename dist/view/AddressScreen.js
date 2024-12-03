@@ -9,7 +9,7 @@ class AddressScreen extends BaseScreen_1.BaseScreen {
     startAddress() {
         console.log(` 
       ================================
-      Sessão 2: Endereço
+      Endereço: 
       ================================
     `);
     }

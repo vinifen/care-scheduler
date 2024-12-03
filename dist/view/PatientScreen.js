@@ -12,7 +12,7 @@ class PatientScreen extends BaseScreen_1.BaseScreen {
       Criar nova consulta para um paciente
       Digite "0" para cancelar.
       ================================
-      Sessão 1: Informações gerais
+      Sobre o Paciente:
       ================================
     `);
     }

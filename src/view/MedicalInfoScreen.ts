@@ -10,11 +10,12 @@ export default class MedicalInfoScreen extends BaseScreen {
   }
 
   startMedicalInfo(): void{
-    console.log("Informações Médicas");
+    console.log(` 
+      ================================
+      Informações Médicas: 
+      ================================`);
   }
-  /*Motivo: ${reason}
-        Descrição: ${description}
-        Médico: ${doctorDoctorName}*/
+
   promptReason(): string {
     const reason: string = this.prompt("Razão: ")
     if(!this.validateNonEmpty(reason, "Razão")){

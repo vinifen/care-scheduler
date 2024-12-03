@@ -9,7 +9,7 @@ class ScheduleScreen extends BaseScreen_1.BaseScreen {
     startScheduleScreen() {
         console.log(`
       ===============================
-            Consultas Agendadas
+      Consultas Agendadas:
       ===============================
       `);
     }

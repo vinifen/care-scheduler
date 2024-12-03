@@ -12,7 +12,7 @@ export default class AddressScreen extends BaseScreen {
   startAddress(): void{
     console.log(` 
       ================================
-      Sessão 2: Endereço
+      Endereço: 
       ================================
     `);
   }

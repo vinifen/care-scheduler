@@ -7,11 +7,11 @@ class MedicalInfoScreen extends BaseScreen_1.BaseScreen {
         this.primaryScreen = primaryScreen;
     }
     startMedicalInfo() {
-        console.log("Informações Médicas");
+        console.log(` 
+      ================================
+      Informações Médicas: 
+      ================================`);
     }
-    /*Motivo: ${reason}
-          Descrição: ${description}
-          Médico: ${doctorDoctorName}*/
     promptReason() {
         const reason = this.prompt("Razão: ");
         if (!this.validateNonEmpty(reason, "Razão")) {
