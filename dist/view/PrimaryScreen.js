@@ -10,6 +10,8 @@ const PatientScreen_1 = __importDefault(require("./PatientScreen"));
 const AddressScreen_1 = __importDefault(require("./AddressScreen"));
 const MedicalInfoScreen_1 = __importDefault(require("./MedicalInfoScreen"));
 const ScheduleScreen_1 = __importDefault(require("./ScheduleScreen"));
+const EditAppointmentScreen_1 = __importDefault(require("./EditAppointmentScreen"));
+const DeleteAppointmentScreen_1 = __importDefault(require("./DeleteAppointmentScreen"));
 class PrimaryScreen {
     constructor(router) {
         this.schScr = new ScheduleScreen_1.default(this);
@@ -18,6 +20,8 @@ class PrimaryScreen {
         this.addScr = new AddressScreen_1.default(this);
         this.appScr = new AppointmentScreen_1.default(this, router, this.ptScr, this.addScr, this.mdIfScr, this.schScr);
         this.listQr = new ListScreen_1.default(this, router);
+        this.editAppScr = new EditAppointmentScreen_1.default(this, router, this.ptScr, this.addScr, this.mdIfScr, this.schScr);
+        this.delAppScr = new DeleteAppointmentScreen_1.default(router, this);
     }
     startScreen() {
         const prompt = (0, prompt_sync_1.default)();
@@ -28,11 +32,13 @@ class PrimaryScreen {
       Digite o número correspondente à opção desejada:
       1 - Agendar uma nova consulta
       2 - Listar consultas agendadas
+      3 - Editar consultas
+      4 - Excluir consultas
       0 - Sair
       ================================
     `);
         const opcao = prompt("Escolha uma opção: ");
-        if (isNaN(Number(opcao)) || Number(opcao) < 0 || Number(opcao) > 2) {
+        if (isNaN(Number(opcao)) || Number(opcao) < 0 || Number(opcao) > 4) {
             console.log("Opção inválida.");
             this.startScreen();
             return;
@@ -43,6 +49,12 @@ class PrimaryScreen {
                 break;
             case 2:
                 this.listQr.listAppointment();
+                break;
+            case 3:
+                this.editAppScr.selectAppointment();
+                break;
+            case 4:
+                this.delAppScr.delete();
                 break;
             case 0:
                 console.log("Saindo...");

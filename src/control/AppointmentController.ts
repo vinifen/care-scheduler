@@ -40,4 +40,8 @@ export default class AppointmentController {
   public getDbAppointment() {
     return this.db.getAppointments(); 
   }
+
+  public setDbAppointment(appointment: IAppointment[]){
+    return this.db.setAppointments(appointment);
+  }
 }

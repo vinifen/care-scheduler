@@ -8,12 +8,14 @@ export default class Database {
     appointment.id = this.currentId;
     this.appointments.push(appointment);
     this.currentId++;
-
     console.log(this.appointments);
   }
 
-  public getAppointments(){
+  public getAppointments(): IAppointment[] {
     return this.appointments;
   }
+
+  public setAppointments(appointments: IAppointment[]): void {
+    this.appointments = appointments;
+  }
 }
-1

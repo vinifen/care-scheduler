@@ -33,5 +33,8 @@ class AppointmentController {
     getDbAppointment() {
         return this.db.getAppointments();
     }
+    setDbAppointment(appointment) {
+        return this.db.setAppointments(appointment);
+    }
 }
 exports.default = AppointmentController;

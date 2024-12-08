@@ -14,5 +14,8 @@ class Database {
     getAppointments() {
         return this.appointments;
     }
+    setAppointments(appointments) {
+        this.appointments = appointments;
+    }
 }
 exports.default = Database;
