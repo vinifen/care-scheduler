@@ -15,6 +15,7 @@ class ListQueriesScreen {
         }
         else {
             appointments.forEach((appointment, index) => {
+                console.log(`\nID ${appointment.id}`);
                 console.log(`\nConsulta ${index + 1}:`);
                 console.log("-------------------------------");
                 console.log(`Paciente: ${appointment.patient.getName()}`);
@@ -23,7 +24,8 @@ class ListQueriesScreen {
                 console.log("\nEndereço:");
                 console.log(`Rua: ${appointment.address.getStreet()}`);
                 console.log(`Número: ${appointment.address.getHouseNumber()}`);
-                console.log(`Cidade: ${appointment.address.getCity()} | Estado: ${appointment.address.getState()}`);
+                console.log(`Cidade: ${appointment.address.getCity()}`);
+                console.log(`Estado: ${appointment.address.getState()}`);
                 console.log(`País: ${appointment.address.getCountry()}`);
                 console.log("\nInformações Médicas:");
                 console.log(`Motivo: ${appointment.medicalInformation.getReason()}`);

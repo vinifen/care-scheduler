@@ -2,14 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Database {
     constructor() {
-        this.appointment = [];
+        this.appointments = [];
+        this.currentId = 1;
     }
     addNewAppointment(appointment) {
-        this.appointment.push(appointment);
-        console.log(this.appointment);
+        appointment.id = this.currentId;
+        this.appointments.push(appointment);
+        this.currentId++;
+        console.log(this.appointments);
     }
     getAppointments() {
-        return this.appointment;
+        return this.appointments;
     }
 }
 exports.default = Database;
