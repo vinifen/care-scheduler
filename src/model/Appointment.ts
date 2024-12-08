@@ -9,12 +9,14 @@ export default class Appointment implements IAppointment {
   public address: Address;
   public medicalInformation: MedicalInformation;
   public schedule: Schedule;
+  public id: number = NaN;
 
   constructor(
     patient: Patient,
     address: Address,
     medicalInformation: MedicalInformation,
-    schedule: Schedule
+    schedule: Schedule,
+    
   ) {
     this.patient = patient;
     this.address = address;

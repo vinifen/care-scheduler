@@ -15,6 +15,7 @@ class ListQueriesScreen {
         }
         else {
             appointments.forEach((appointment, index) => {
+                console.log(`\nID ${appointment.id}`);
                 console.log(`\nConsulta ${index + 1}:`);
                 console.log("-------------------------------");
                 console.log(`Paciente: ${appointment.patient.getName()}`);

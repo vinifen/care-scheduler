@@ -8,4 +8,5 @@ export default interface IAppointment {
   address: Address;
   medicalInformation: MedicalInformation;
   schedule: Schedule;
+  id: number;
 }

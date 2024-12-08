@@ -24,6 +24,7 @@ export default class ListQueriesScreen {
       appointments.forEach((appointment, index) => {
         console.log(`\nConsulta ${index + 1}:`);
         console.log("-------------------------------");
+        console.log(`\nID ${appointment.id}`);
         console.log(`Paciente: ${appointment.patient.getName()}`);
         console.log(`CPF: ${appointment.patient.getCpf()}`);
         console.log(`Idade: ${appointment.patient.getAge()}`);
