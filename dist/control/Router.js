@@ -11,6 +11,7 @@ class Router {
         this.db = new Database_1.default();
         this.initial = new PrimaryScreen_1.default(this);
         this.apCrtl = new AppointmentController_1.default(this.db);
+        //commented for testing
         this.initial.startScreen();
     }
 }

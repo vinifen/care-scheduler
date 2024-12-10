@@ -13,8 +13,8 @@ class MedicalInfoScreen extends BaseScreen_1.BaseScreen {
       ================================`);
     }
     promptReason() {
-        const reason = this.prompt("Razão: ");
-        if (!this.validateNonEmpty(reason, "Razão")) {
+        const reason = this.prompt("Motivo: ");
+        if (!this.validateNonEmpty(reason, "Motivo")) {
             return this.promptReason();
         }
         return reason;

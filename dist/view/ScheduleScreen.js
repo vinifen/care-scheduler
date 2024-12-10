@@ -15,14 +15,14 @@ class ScheduleScreen extends BaseScreen_1.BaseScreen {
     }
     promptDate() {
         const date = this.prompt('Dia (DD/MM/AAAA): ');
-        if (!this.validateNonEmpty(date, "Data") || !this.validationLength(date, "Data", 8, 10)) {
+        if (!this.validateNonEmpty(date, "Data") || !this.validationLength(date, "Data", 8, 10) || !this.validateNonLetters(date, "Data")) {
             return this.promptDate();
         }
         return date;
     }
     promptTime() {
         const time = this.prompt('Hora (HH:MM): ');
-        if (!this.validateNonEmpty(time, "Hora") || !this.validationLength(time, "Hora", 4, 5)) {
+        if (!this.validateNonEmpty(time, "Hora") || !this.validationLength(time, "Hora", 4, 5) || !this.validateNonLetters(time, "Hora")) {
             return this.promptTime();
         }
         return time;

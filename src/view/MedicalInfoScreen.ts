@@ -17,8 +17,8 @@ export default class MedicalInfoScreen extends BaseScreen {
   }
 
   promptReason(): string {
-    const reason: string = this.prompt("Razão: ")
-    if(!this.validateNonEmpty(reason, "Razão")){
+    const reason: string = this.prompt("Motivo: ")
+    if(!this.validateNonEmpty(reason, "Motivo")){
       return this.promptReason();
     }
     return reason;

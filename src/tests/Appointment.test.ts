@@ -1,28 +1,7 @@
 import Router from "../control/Router";
 import IAppointment from "../model/IAppointment";
-import AppointmentScreen from "../view/AppointmentScreen";
-import PrimaryScreen from "../view/PrimaryScreen";
-import PatientScreen from "../view/PatientScreen";
-import AddressScreen from "../view/AddressScreen";
-import MedicalInfoScreen from "../view/MedicalInfoScreen";
-import ScheduleScreen from "../view/ScheduleScreen";
 
 let router: Router = new Router();
-
-let primaryScreen: PrimaryScreen = new PrimaryScreen(router);
-let addressScreen: AddressScreen = new AddressScreen(primaryScreen);
-let patientScreen: PatientScreen = new PatientScreen(primaryScreen);
-let scheduleScreen: ScheduleScreen = new ScheduleScreen(primaryScreen);
-let medicalInfoScreen: MedicalInfoScreen = new MedicalInfoScreen(primaryScreen);
-
-let appointmentScreen: AppointmentScreen = new AppointmentScreen(
-  primaryScreen, 
-  router,
-  patientScreen,
-  addressScreen,
-  medicalInfoScreen,
-  scheduleScreen
-);
 
 const name: string = "Vinicius";
 const cpf: string = "12345678901";
@@ -42,16 +21,67 @@ const date: string = "10/10/2024";
 const time: string = "18:00";
 const location: string = "Rua: bao Hospital: sim";
 
-const appointment: IAppointment = router.apCrtl.getAppointmentModel(
-  router.apCrtl.getPatientModel(name, cpf, age),
-  router.apCrtl.getAddressModel(street, houseNumber, city, state, country),
-  router.apCrtl.getMedicalInformationModel(reason, description, doctorName),
-  router.apCrtl.getScheduleModel(date, time, location)
-);
+let patient = router.apCrtl.getPatientModel(name, cpf, age);
+let address = router.apCrtl.getAddressModel(street, houseNumber, city, state, country);
+let medicalInformation = router.apCrtl.getMedicalInformationModel(reason, description, doctorName);
+let schedule = router.apCrtl.getScheduleModel(date, time, location);
+
+let appointment: IAppointment = router.apCrtl.getAppointmentModel(patient, address, medicalInformation, schedule);
 
 router.apCrtl.registerAppointment(appointment);
-const appointments = router.apCrtl.getDbAppointment();
 
-test("Teste Database", () => {
+test("Teste nome do paciente", () => {
+  expect(appointment.patient.getName()).toBe(name);
+});
+
+test("Teste CPF do paciente", () => {
+  expect(appointment.patient.getCpf()).toBe(cpf);
+});
+
+test("Teste idade do paciente", () => {
+  expect(appointment.patient.getAge()).toBe(age);
+});
+
+test("Teste rua do endereço", () => {
+  expect(appointment.address.getStreet()).toBe(street);
+});
+
+test("Teste número da casa", () => {
+  expect(appointment.address.getHouseNumber()).toBe(houseNumber);
+});
+
+test("Teste cidade do endereço", () => {
   expect(appointment.address.getCity()).toBe(city);
-})
+});
+
+test("Teste estado do endereço", () => {
+  expect(appointment.address.getState()).toBe(state);
+});
+
+test("Teste país do endereço", () => {
+  expect(appointment.address.getCountry()).toBe(country);
+});
+
+test("Teste motivo da consulta", () => {
+  expect(appointment.medicalInformation.getReason()).toBe(reason);
+});
+
+test("Teste descrição da consulta", () => {
+  expect(appointment.medicalInformation.getDescription()).toBe(description);
+});
+
+test("Teste nome do médico", () => {
+  expect(appointment.medicalInformation.getDoctorName()).toBe(doctorName);
+});
+
+test("Teste data da consulta", () => {
+  expect(appointment.schedule.getDate()).toBe(date);
+});
+
+test("Teste hora da consulta", () => {
+  expect(appointment.schedule.getTime()).toBe(time);
+});
+
+test("Teste local da consulta", () => {
+  expect(appointment.schedule.getLocation()).toBe(location);
+});
