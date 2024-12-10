@@ -22,7 +22,7 @@ class ScheduleScreen extends BaseScreen_1.BaseScreen {
     }
     promptTime() {
         const time = this.prompt('Hora (HH:MM): ');
-        if (!this.validateNonEmpty(time, "Hora") || !this.validationLength(time, "Hora", 4, 5) || !this.validateNonLetters(time, "Hora")) {
+        if (!this.validateNonEmpty(time, "Hora") || !this.validationLength(time, "Hora", 4, 6) || !this.validateNonLetters(time, "Hora")) {
             return this.promptTime();
         }
         return time;
