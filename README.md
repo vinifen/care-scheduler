@@ -4,4 +4,4 @@ Passos para rodar:
 - npm install
 - node ./dist/index.js
 ---
-Se desejar editar o arquivo, usar "npm run build" para atualizar os arquivos em dist.
+Se desejar editar o projeto, usar "npm run build" para atualizar os arquivos em dist.
