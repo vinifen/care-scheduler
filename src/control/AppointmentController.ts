@@ -7,9 +7,9 @@ import Appointment from "../model/Appointment";
 import IAppointment from "../model/IAppointment";
 
 export default class AppointmentController {
-  private db!: Database;
+  private db!: Database<IAppointment>;
 
-  constructor(db: Database){
+  constructor(db: Database<IAppointment>){
     this.db = db;
   }
 

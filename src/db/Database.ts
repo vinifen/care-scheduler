@@ -1,21 +1,17 @@
 import IAppointment from "../model/IAppointment";
 
-export default class Database {
-  private appointments: IAppointment[] = [];
-  private currentId: number = 1;
+export default class Database<T> {
+  private appointments: T[] = [];
 
-  public addNewAppointment(appointment: IAppointment): void {
-    appointment.id = this.currentId;
+  public addNewAppointment(appointment: T): void {
     this.appointments.push(appointment);
-    this.currentId++;
-    console.log(this.appointments);
   }
 
-  public getAppointments(): IAppointment[] {
+  public getAppointments(): T[] {
     return this.appointments;
   }
 
-  public setAppointments(appointments: IAppointment[]): void {
+  public setAppointments(appointments: T[]): void {
     this.appointments = appointments;
   }
 }

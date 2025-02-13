@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Router_1 = __importDefault(require("../control/Router"));
-let router = new Router_1.default();
+let router = new Router_1.default(true);
 const name = "Vinicius";
 const cpf = "12345678901";
 const age = 19;

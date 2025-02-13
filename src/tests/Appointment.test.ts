@@ -1,7 +1,7 @@
 import Router from "../control/Router";
 import IAppointment from "../model/IAppointment";
 
-let router: Router = new Router();
+let router: Router = new Router(true);
 
 const name: string = "Vinicius";
 const cpf: string = "12345678901";

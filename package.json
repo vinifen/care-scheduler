@@ -8,9 +8,12 @@
     "ts-jest": "^29.2.5"
   },
   "scripts": {
-    "build": "rimraf dist && tsc"
+    "build": "rimraf dist && tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node dist/index.js"
   },
   "dependencies": {
-    "prompt-sync": "^4.2.0"
+    "prompt-sync": "^4.2.0",
+    "typescript": "^5.7.3"
   }
 }
