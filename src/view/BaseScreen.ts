@@ -18,29 +18,25 @@ export abstract class BaseScreen {
         return false;
       }
       if (trimInput === '') {
-        console.log(`${fieldName} não pode estar vazio.`);
-        return false;
+        throw new Error(`${fieldName} não pode estar vazio.`);
       }
       return true;
-    }catch(error){
-      error = "Erro validacao da entrada";
-      console.error(error);
-      return false
+    } catch (error: Error | any) {
+      console.error(error.message);
+      return false; 
     }
   }
 
-  validateNonLetters(input: string, fieldName: string){
+  validateNonLetters(input: string, fieldName: string): boolean {
     try {
       const trimInput = input.trim();
-      if(/[a-zA-Z]/.test(trimInput)){
-        console.log(`${fieldName} não pode conter letras.`);
-        return false;
-      }   
-      return true;   
-    }catch(error){
-      error = "Erro de validacao, nao pode ter letras";
-      console.error(error);
-      return false;
+      if(/[a-zA-Z]/.test(trimInput)) {
+        throw new Error(`${fieldName} não pode conter letras.`);
+      }
+      return true;
+    } catch (error: Error | any) {
+      console.error(error.message);
+      return false; 
     }
   }
 
@@ -48,46 +44,38 @@ export abstract class BaseScreen {
     try{ 
       const trimInput = input.trim();
       if (/\d/.test(trimInput)) {
-        console.log(`${fieldName} não pode conter números.`);
-        return false;
+        throw new Error(`${fieldName} não pode conter números.`);
       }
       return true;
-    }catch(error){
-      error = "Erro de validacao, nao é numero";
-      console.error(error);
-      return false
+    } catch (error: Error | any) {
+      console.error(error.message);
+      return false;
     }
   }
 
   validateNumber(input: string, fieldName: string): boolean {
     try{ 
       const regex = /^\d+$/;
-    
       if (!regex.test(input)) {
-        console.log(`Entrada inválida. O campo ${fieldName} deve conter apenas números.`);
-        return false;
+        throw new Error(`Entrada inválida. O campo ${fieldName} deve conter apenas números.`);
       }
-    
       return true;
-    }catch(error){
-      error = "Erro de validacao do numero";
-      console.error(error);
-      return false
+    } catch (error: Error | any) {
+      console.error(error.message);
+      return false;  
     }
   }
 
-  validationLength(input: string, fieldName: string, minLength: number, maxLength: number): boolean{
+  validationLength(input: string, fieldName: string, minLength: number, maxLength: number): boolean {
     try{ 
       const inputLength = input.length;
       if (inputLength < minLength || inputLength > maxLength) {
-        console.log(`Entrada inválida. O campo ${fieldName} deve ter entre ${minLength} e ${maxLength} dígitos.`);
-        return false;
+        throw new Error(`Entrada inválida. O campo ${fieldName} deve ter entre ${minLength} e ${maxLength} dígitos.`);
       }
       return true;
-    }catch(error){
-      error = "Erro na validacao do tamanho da entrada";
-      console.error(error);
-      return false
+    } catch (error: Error | any) {
+      console.error(error.message);
+      return false;  
     }
   }
 }
