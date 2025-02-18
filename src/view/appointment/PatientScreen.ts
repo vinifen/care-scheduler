@@ -1,6 +1,6 @@
-import Screen from "./CreateScreen";
+import CreateScreen from "./CreateScreen";
 
-export default class PatientScreen extends Screen {
+export default class PatientScreen extends CreateScreen {
   startScreen(): void {
     console.log(` 
       ================================

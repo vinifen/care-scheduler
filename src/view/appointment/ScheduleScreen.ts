@@ -1,6 +1,6 @@
-import Screen from "./CreateScreen";
+import CreateScreen from "./CreateScreen";
 
-export default class ScheduleScreen extends Screen {
+export default class ScheduleScreen extends CreateScreen {
   startScreen(): void {
     console.log(`
       ===============================
