@@ -1,7 +1,7 @@
-import { BaseScreen } from "./BaseScreen";
-import PrimaryScreen from "./PrimaryScreen";
+import { Validation } from "../Validation";
+import PrimaryScreen from "../PrimaryScreen";
 
-export default class AddressScreen extends BaseScreen {
+export default class AddressScreen extends Validation {
   primaryScreen: PrimaryScreen;
 
   constructor(primaryScreen: PrimaryScreen){

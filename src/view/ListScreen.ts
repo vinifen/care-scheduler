@@ -1,9 +1,11 @@
-import Router from "../control/Router";
+import Router from "../router/Router";
 import PrimaryScreen from "./PrimaryScreen";
+import PromptSync from "prompt-sync";
 
 export default class ListQueriesScreen {
   private primaryScreen: PrimaryScreen;
   private router: Router;
+  private prompt = PromptSync();
 
   constructor(primaryScreen: PrimaryScreen, router: Router) {
     this.primaryScreen = primaryScreen;
@@ -51,6 +53,9 @@ export default class ListQueriesScreen {
     }
 
     console.log("===============================");
-    this.primaryScreen.startScreen();
+    const returnScreen = this.prompt("Digite qualquer coisa para voltar: ")
+    if(returnScreen != null){
+      this.primaryScreen.startScreen();
+    }
   }
 }

@@ -1,11 +1,11 @@
 import promptSync from "prompt-sync";
-import Router from "../control/Router";
-import AppointmentScreen from "./AppointmentScreen";
+import Router from "../router/Router";
+import AppointmentScreen from "./appointment/AppointmentScreen";
 import ListScreen from "./ListScreen";
-import PatientScreen from "./PatientScreen";
-import AddressScreen from "./AddressScreen";
-import MedicalInfoScreen from "./MedicalInfoScreen";
-import ScheduleScreen from "./ScheduleScreen";
+import PatientScreen from "./appointment/PatientScreen";
+import AddressScreen from "./appointment/AddressScreen";
+import MedicalInfoScreen from "./appointment/MedicalInfoScreen";
+import ScheduleScreen from "./appointment/ScheduleScreen";
 import EditAppointmentScreen from "./EditAppointmentScreen";
 import DeleteAppointment from "./DeleteAppointmentScreen";
 

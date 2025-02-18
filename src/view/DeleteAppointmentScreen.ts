@@ -1,5 +1,5 @@
 import PrimaryScreen from "./PrimaryScreen";
-import Router from "../control/Router";
+import Router from "../router/Router";
 import IAppointment from "../model/IAppointment";
 import PromptSync from "prompt-sync";
 

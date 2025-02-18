@@ -1,11 +1,11 @@
-import ScheduleScreen from "./ScheduleScreen";
-import PatientScreen from "./PatientScreen";
-import AddressScreen from "./AddressScreen";
-import MedicalInfoScreen from "./MedicalInfoScreen";
-import Router from "../control/Router";
+import ScheduleScreen from "./appointment/ScheduleScreen";
+import PatientScreen from "./appointment/PatientScreen";
+import AddressScreen from "./appointment/AddressScreen";
+import MedicalInfoScreen from "./appointment/MedicalInfoScreen";
 import IAppointment from "../model/IAppointment";
 import PromptSync from "prompt-sync";
 import PrimaryScreen from "./PrimaryScreen";
+import Router from "../router/Router";
 
 export default class EditAppointmentScreen {
   private router: Router;
@@ -31,36 +31,6 @@ export default class EditAppointmentScreen {
     this.patientScreen = patientScreen;
     this.medicalInfoScreen = medicalInfoScreen;
     this.scheduleScreen = scheduleScreen;
-  }
-
-  selectAppointment(): void{ 
-    const allAppointments: IAppointment[] = this.router.apCrtl.getDbAppointment();
-    
-    console.log(`
-      Selecione o número da consulta que deseja editar: 
-      Digite "0" para voltar.
-    ====================================================`);
-    allAppointments.forEach((appmt) => {
-      console.log(`${appmt.id} - ${appmt.patient.getName()}`)
-    });
-
-    const selectedID: number = Number(this.prompt('Número: '));
-
-    const selectedAppointment = allAppointments.find((appmt) => {
-      if (appmt.id === selectedID) { 
-        return true;
-      }
-      return false;
-    });
-    
-    if (selectedAppointment) {
-      console.log("Consulta selecionada:", selectedAppointment);
-      const fieldSelected = this.selectField(selectedAppointment);
-      this.promptEdit(fieldSelected, selectedAppointment);
-    } else {
-      console.log("Nenhuma consulta encontrada com esse ID.");
-      this.primaryScreen.startScreen();
-    }
   }
 
   selectField(appmtSelected: IAppointment): number{
@@ -91,6 +61,43 @@ export default class EditAppointmentScreen {
 
     const selectedField: number = Number(this.prompt('Número: '));
     return selectedField;
+  }
+
+  selectAppointment(): void{ 
+    const allAppointments: IAppointment[] = this.router.apCrtl.getDbAppointment();
+    
+    console.log(`
+      Selecione o número da consulta que deseja editar: 
+      Digite "0" para voltar.
+    ====================================================`);
+    if(allAppointments.length == 0){
+      console.log("Nenhuma consulta encontrada");
+    }
+    allAppointments.forEach((appmt) => {
+      console.log(`${appmt.id} - ${appmt.patient.getName()}`)
+    });
+
+    const selectedID: number = Number(this.prompt('Número: '));
+
+    if(selectedID === 0){
+      this.primaryScreen.startScreen();
+    }
+
+    const selectedAppointment = allAppointments.find((appmt) => {
+      if (appmt.id === selectedID) { 
+        return true;
+      }
+      return false;
+    });
+    
+    if (selectedAppointment) {
+      console.log("Consulta selecionada:", selectedAppointment);
+      const fieldSelected = this.selectField(selectedAppointment);
+      this.promptEdit(fieldSelected, selectedAppointment);
+    } else {
+      console.log("Nenhuma consulta encontrada com esse ID.");
+      this.selectAppointment();
+    }
   }
 
   promptEdit(selected: number, appmtSelected: IAppointment): void {

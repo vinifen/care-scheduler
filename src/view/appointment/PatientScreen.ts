@@ -1,7 +1,7 @@
-import PrimaryScreen from "./PrimaryScreen";
-import { BaseScreen } from "./BaseScreen";
+import PrimaryScreen from "../PrimaryScreen";
+import { Validation } from "../Validation";
 
-export default class PatientScreen extends BaseScreen {
+export default class PatientScreen extends Validation {
   primaryScreen: PrimaryScreen;
 
 

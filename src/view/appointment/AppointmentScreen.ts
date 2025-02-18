@@ -1,13 +1,13 @@
-import { BaseScreen } from "./BaseScreen";
-import PrimaryScreen from "./PrimaryScreen";
+import { Validation } from "../Validation";
+import PrimaryScreen from "../PrimaryScreen";
 import PatientScreen from "./PatientScreen";
-import Router from "../control/Router";
+import Router from "../../router/Router";
 import AddressScreen from "./AddressScreen";
 import MedicalInfoScreen from "./MedicalInfoScreen";
 import ScheduleScreen from "./ScheduleScreen";
-import IAppointment from "../model/IAppointment";
+import IAppointment from "../../model/IAppointment";
 
-export default class AppointmentScreen extends BaseScreen {
+export default class AppointmentScreen extends Validation {
   private patientScreen: PatientScreen;
   private router: Router;
   private addressScreen: AddressScreen;
@@ -48,6 +48,7 @@ export default class AppointmentScreen extends BaseScreen {
     const description = this.medicalInfoScreen.promptDescription();
     const doctorName = this.medicalInfoScreen.promptDoctorName();
 
+    
     this.scheduleScreen.startScheduleScreen();
     const date = this.scheduleScreen.promptDate();
     const time = this.scheduleScreen.promptTime(); 

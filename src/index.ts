@@ -1,2 +1,2 @@
-import Router from "./control/Router"
+import Router from "./router/Router";
 new Router();

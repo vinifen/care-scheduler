@@ -1,6 +1,6 @@
 import Database from "../db/Database";
 import PrimaryScreen from "../view/PrimaryScreen";
-import AppointmentController from "./AppointmentController";
+import AppointmentController from "../control/AppointmentController";
 import IAppointment from "../model/IAppointment";
 
 export default class Router{

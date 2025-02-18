@@ -33,14 +33,5 @@ export default class Schedule {
     this.location = location;
   }
 
-  public displaySchedule(): void {
-    console.log(` 
-      ================================
-      Agendamento:
-      ================================
-      Data: ${this.getDate()}
-      Hora: ${this.getTime()}
-      Local: ${this.getLocation()}
-    `);
-  }
+
 }

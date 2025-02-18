@@ -5,6 +5,7 @@ import Patient from "../model/Patient";
 import Schedule from "../model/Schedule";
 import Appointment from "../model/Appointment";
 import IAppointment from "../model/IAppointment";
+import { generatePDF } from "../utils/generatePdf";
 
 export default class AppointmentController {
   private db!: Database<IAppointment>;
@@ -43,5 +44,9 @@ export default class AppointmentController {
 
   public setDbAppointment(appointment: IAppointment[]){
     return this.db.setAppointments(appointment);
+  }
+
+  public async getGeneratePdf(data: any){
+    await generatePDF(data);
   }
 }

@@ -1,7 +1,7 @@
 import PromptSync from "prompt-sync";
 import PrimaryScreen from "./PrimaryScreen";
 
-export abstract class BaseScreen {
+export class Validation {
   primaryScreen: PrimaryScreen; 
   prompt = PromptSync();
 
