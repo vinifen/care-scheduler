@@ -1,4 +1,3 @@
-import { Validation } from "../Validation";
 import PrimaryScreen from "../PrimaryScreen";
 import PatientScreen from "./PatientScreen";
 import Router from "../../router/Router";
@@ -6,8 +5,9 @@ import AddressScreen from "./AddressScreen";
 import MedicalInfoScreen from "./MedicalInfoScreen";
 import ScheduleScreen from "./ScheduleScreen";
 import IAppointment from "../../model/IAppointment";
+import CreateScreen from "./CreateScreen";
 
-export default class AppointmentScreen extends Validation {
+export default class AppointmentScreen extends CreateScreen {
   private patientScreen: PatientScreen;
   private router: Router;
   private addressScreen: AddressScreen;
@@ -30,26 +30,25 @@ export default class AppointmentScreen extends Validation {
     this.scheduleScreen = scheduleScreen;
   }
 
-  public registerAppointment(): void {
-    this.patientScreen.startPatient();
+  public startScreen(): void {
+    this.patientScreen.startScreen();
     const name = this.patientScreen.promptName();
     const age = this.patientScreen.promptAge();
     const cpf = this.patientScreen.promptCPF();
 
-    this.addressScreen.startAddress();
+    this.addressScreen.startScreen();
     const street = this.addressScreen.promptStreet();
     const houseNumber = this.addressScreen.promptHouseNumber();
     const city = this.addressScreen.promptCity();
     const state = this.addressScreen.promptState();
     const country = this.addressScreen.promptCountry();
 
-    this.medicalInfoScreen.startMedicalInfo();
+    this.medicalInfoScreen.startScreen();
     const reason = this.medicalInfoScreen.promptReason();
     const description = this.medicalInfoScreen.promptDescription();
     const doctorName = this.medicalInfoScreen.promptDoctorName();
 
-    
-    this.scheduleScreen.startScheduleScreen();
+    this.scheduleScreen.startScreen();
     const date = this.scheduleScreen.promptDate();
     const time = this.scheduleScreen.promptTime(); 
     const location = this.scheduleScreen.promptLocal();  

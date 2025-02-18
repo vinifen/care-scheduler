@@ -58,7 +58,7 @@ export default class PrimaryScreen {
 
     switch (Number(opcao)) {
       case 1:
-        this.appScr.registerAppointment();
+        this.appScr.startScreen();
         break;
       case 2:
         this.listQr.listAppointment();

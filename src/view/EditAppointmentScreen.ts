@@ -6,16 +6,14 @@ import IAppointment from "../model/IAppointment";
 import PromptSync from "prompt-sync";
 import PrimaryScreen from "./PrimaryScreen";
 import Router from "../router/Router";
+import SelectAppointmentScreen from "./SelectAppointmentScreen";
 
-export default class EditAppointmentScreen {
-  private router: Router;
-  private prompt = PromptSync();
 
+export default class EditAppointmentScreen extends SelectAppointmentScreen{
   private patientScreen: PatientScreen;
   private addressScreen: AddressScreen;
   private medicalInfoScreen: MedicalInfoScreen;
   private scheduleScreen: ScheduleScreen;
-  private primaryScreen: PrimaryScreen;
 
   constructor(
     primaryScreen: PrimaryScreen,
@@ -25,6 +23,7 @@ export default class EditAppointmentScreen {
     medicalInfoScreen: MedicalInfoScreen, 
     scheduleScreen: ScheduleScreen
   ){
+    super(router, primaryScreen);
     this.primaryScreen = primaryScreen;
     this.router = router;
     this.addressScreen = addressScreen;
@@ -63,7 +62,7 @@ export default class EditAppointmentScreen {
     return selectedField;
   }
 
-  selectAppointment(): void{ 
+  async selectAppointment(){ 
     const allAppointments: IAppointment[] = this.router.apCrtl.getDbAppointment();
     
     console.log(`
@@ -71,7 +70,7 @@ export default class EditAppointmentScreen {
       Digite "0" para voltar.
     ====================================================`);
     if(allAppointments.length == 0){
-      console.log("Nenhuma consulta encontrada");
+      console.log("Não foi encontrada nenhuma consulta para ser editada.");
     }
     allAppointments.forEach((appmt) => {
       console.log(`${appmt.id} - ${appmt.patient.getName()}`)
@@ -83,6 +82,10 @@ export default class EditAppointmentScreen {
       this.primaryScreen.startScreen();
     }
 
+    this.filterAppointment(selectedID, allAppointments);
+  }
+
+  filterAppointment(selectedID: number, allAppointments: IAppointment[]){
     const selectedAppointment = allAppointments.find((appmt) => {
       if (appmt.id === selectedID) { 
         return true;

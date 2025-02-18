@@ -1,24 +1,24 @@
-import PromptSync from "prompt-sync";
 import Router from "../router/Router";
 import PrimaryScreen from "./PrimaryScreen";
 import IAppointment from "../model/IAppointment";
-import Appointment from "../model/Appointment";
-export default class GeneratePDFScreen {
-  private prompt = PromptSync();
-  constructor(private primaryScreen: PrimaryScreen, private router: Router){}
+import SelectAppointmentScreen from "./SelectAppointmentScreen";
 
-  async selectAppointment(){
+export default class GeneratePDFScreen extends SelectAppointmentScreen {
+
+  constructor(public primaryScreen: PrimaryScreen, public router: Router){
+    super(router, primaryScreen)
+  }
+
+  async selectAppointment(){ 
     const allAppointments: IAppointment[] = this.router.apCrtl.getDbAppointment();
-
+    
     console.log(`
-      Selecione o número da consulta para gerar o PDF: 
+      Selecione o número da consulta que deseja gerar o PDF: 
       Digite "0" para voltar.
     ====================================================`);
-
     if(allAppointments.length == 0){
       console.log("Nenhuma consulta encontrada");
     }
-
     allAppointments.forEach((appmt) => {
       console.log(`${appmt.id} - ${appmt.patient.getName()}`)
     });
@@ -29,6 +29,10 @@ export default class GeneratePDFScreen {
       this.primaryScreen.startScreen();
     }
 
+    await this.filterAppointment(selectedID, allAppointments);
+  }
+
+  async filterAppointment(selectedID: number, allAppointments: IAppointment[]){
     const selectedAppointment = allAppointments.find((appmt) => {
       if (appmt.id === selectedID) { 
         return true;
@@ -46,7 +50,6 @@ export default class GeneratePDFScreen {
   }
 
   async generate(appointment: IAppointment){
-    console.log(appointment);
     await this.router.apCrtl.getGeneratePdf(appointment);
     this.selectAppointment();
   }

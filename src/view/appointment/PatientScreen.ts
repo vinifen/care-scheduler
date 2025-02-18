@@ -1,17 +1,7 @@
-import PrimaryScreen from "../PrimaryScreen";
-import { Validation } from "../Validation";
+import Screen from "./CreateScreen";
 
-export default class PatientScreen extends Validation {
-  primaryScreen: PrimaryScreen;
-
-
-  constructor(primaryScreen: PrimaryScreen) {
-    super(primaryScreen);
-    this.primaryScreen = primaryScreen;
-  }
-
-
-  startPatient(): void{
+export default class PatientScreen extends Screen {
+  startScreen(): void {
     console.log(` 
       ================================
       Criar nova consulta para um paciente
@@ -23,9 +13,8 @@ export default class PatientScreen extends Validation {
   }
 
   promptName(): string {
-    const name: string = this.prompt("Name: ");
-
-    if(!this.validateNonEmpty(name, "Nome") || !this.validateNonNumber(name, "Nome")){
+    const name: string = this.prompt("Nome: ");
+    if (!this.validateNonEmpty(name, "Nome") || !this.validateNonNumber(name, "Nome")) {
       return this.promptName();
     }
     return name;
@@ -33,16 +22,15 @@ export default class PatientScreen extends Validation {
 
   promptAge(): number {
     const ageString: string = this.prompt("Idade: ");
-    if(!this.validateNonEmpty(ageString, "Idade") || !this.validateNumber(ageString, "Idade")  || !this.validationLength(ageString, "Idade", 1, 3)){
+    if (!this.validateNonEmpty(ageString, "Idade") || !this.validateNumber(ageString, "Idade") || !this.validationLength(ageString, "Idade", 1, 3)) {
       return this.promptAge();
     }
-    const age: number = Number(ageString);
-    return age;
+    return Number(ageString);
   }
 
   promptCPF(): string {
     const cpf: string = this.prompt("CPF: "); 
-    if(!this.validateNonEmpty(cpf, "CPF") || !this.validateNumber(cpf, "CPF") || !this.validationLength(cpf, "CPF", 11, 11)){
+    if (!this.validateNonEmpty(cpf, "CPF") || !this.validateNumber(cpf, "CPF") || !this.validationLength(cpf, "CPF", 11, 11)) {
       return this.promptCPF();
     }
     return cpf;
