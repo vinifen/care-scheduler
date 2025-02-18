@@ -47,6 +47,6 @@ export default class AppointmentController {
   }
 
   public async getGeneratePdf(data: any){
-    await generatePDF(data);
+    return await generatePDF(data);
   }
 }

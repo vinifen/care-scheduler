@@ -8,6 +8,7 @@ import MedicalInfoScreen from "./appointment/MedicalInfoScreen";
 import ScheduleScreen from "./appointment/ScheduleScreen";
 import EditAppointmentScreen from "./EditAppointmentScreen";
 import DeleteAppointment from "./DeleteAppointmentScreen";
+import GeneratePDFScreen from "./GeneratePDFScreen";
 
 export default class PrimaryScreen {
   private appScr: AppointmentScreen;
@@ -18,6 +19,7 @@ export default class PrimaryScreen {
   private schScr: ScheduleScreen;
   private editAppScr: EditAppointmentScreen;
   private delAppScr: DeleteAppointment;
+  private genPDF: GeneratePDFScreen;
 
   constructor(router: Router) {
     this.schScr = new ScheduleScreen(this);
@@ -28,9 +30,10 @@ export default class PrimaryScreen {
     this.listQr = new ListScreen(this, router);
     this.editAppScr = new EditAppointmentScreen(this, router, this.ptScr, this.addScr, this.mdIfScr, this.schScr)
     this.delAppScr = new DeleteAppointment(router, this);
+    this.genPDF = new GeneratePDFScreen(this, router);
   }
 
-  public startScreen(): void {
+  public async startScreen() {
     const prompt = promptSync();
     console.log(`
       ================================
@@ -41,12 +44,13 @@ export default class PrimaryScreen {
       2 - Listar consultas agendadas
       3 - Editar consultas
       4 - Excluir consultas
+      5 - Gerar PDF
       0 - Sair
       ================================
     `);
 
     const opcao = prompt("Escolha uma opção: ");
-    if (isNaN(Number(opcao)) || Number(opcao) < 0 || Number(opcao) > 4) {
+    if (isNaN(Number(opcao)) || Number(opcao) < 0 || Number(opcao) > 5) {
       console.log("Opção inválida.");
       this.startScreen();
       return;
@@ -64,6 +68,9 @@ export default class PrimaryScreen {
         break;
       case 4:
         this.delAppScr.delete();
+        break;
+      case 5:
+        await this.genPDF.selectAppointment();
         break;
       case 0:
         console.log("Saindo...");
