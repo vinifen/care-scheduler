@@ -2,7 +2,7 @@ import Router from "../router/Router";
 import IAppointment from "../model/IAppointment";
 import { Validation } from "../view/Validation";
 import PrimaryScreen from "../view/PrimaryScreen";
-import { error } from "console";
+
 
 let router: Router = new Router(true);
 const primaryScreen: PrimaryScreen = new PrimaryScreen(router);

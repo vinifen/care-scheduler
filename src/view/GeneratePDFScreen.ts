@@ -9,36 +9,51 @@ export default class GeneratePDFScreen extends SelectAppointmentScreen {
     super(router, primaryScreen)
   }
 
-  async selectAppointment(){ 
+  async selectAppointment() { 
     const allAppointments: IAppointment[] = this.router.apCrtl.getDbAppointment();
     
     console.log(`
-      Selecione o número da consulta que deseja gerar o PDF: 
+      Selecione o número ou nome da consulta:
       Digite "0" para voltar.
     ====================================================`);
-    if(allAppointments.length == 0){
-      console.log("Nenhuma consulta encontrada");
+    
+    if (allAppointments.length === 0) {
+      console.log("Nenhuma consulta encontrada.");
+      this.primaryScreen.startScreen();
+      return;
     }
+
     allAppointments.forEach((appmt) => {
-      console.log(`${appmt.id} - ${appmt.patient.getName()}`)
+      console.log(`${appmt.id} - ${appmt.patient.getName()}`);
     });
 
-    const selectedID: number = Number(this.prompt('Número: '));
+    const input = this.prompt("Input pdf: ");
+    const selected: number | string = isNaN(Number(input)) 
+      ? (/[a-zA-Z]/.test(input) ? input : 'Erro: entrada inválida') 
+      : Number(input);
 
-    if(selectedID === 0){
-      this.primaryScreen.startScreen();
+    if (selected === 'Erro: entrada inválida') {
+      console.log('Erro: entrada inválida.');
+      this.selectAppointment();
+      return;
     }
 
-    await this.filterAppointment(selectedID, allAppointments);
+    if (selected === 0) {
+      this.primaryScreen.startScreen();
+      return;
+    }
+
+    await this.filterAppointment(selected, allAppointments);
   }
 
-  async filterAppointment(selectedID: number, allAppointments: IAppointment[]){
-    const selectedAppointment = allAppointments.find((appmt) => {
-      if (appmt.id === selectedID) { 
-        return true;
-      }
-      return false;
-    });
+  public async filterAppointment(selected: number | string, allAppointments: IAppointment[]): Promise<void> {
+    let selectedAppointment: IAppointment | undefined;
+    
+    if (typeof selected === "number") {
+      selectedAppointment = allAppointments.find((appmt) => appmt.id === selected);
+    } else if (typeof selected === "string") {
+      selectedAppointment = allAppointments.find((appmt) => appmt.patient.getName().toLowerCase() === selected.toLowerCase());
+    }
     
     if (selectedAppointment) {
       console.log("Consulta selecionada:", selectedAppointment);
@@ -48,6 +63,7 @@ export default class GeneratePDFScreen extends SelectAppointmentScreen {
       this.selectAppointment();
     }
   }
+
 
   async generate(appointment: IAppointment){
     await this.router.apCrtl.getGeneratePdf(appointment);

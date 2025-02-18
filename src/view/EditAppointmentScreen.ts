@@ -3,7 +3,6 @@ import PatientScreen from "./appointment/PatientScreen";
 import AddressScreen from "./appointment/AddressScreen";
 import MedicalInfoScreen from "./appointment/MedicalInfoScreen";
 import IAppointment from "../model/IAppointment";
-import PromptSync from "prompt-sync";
 import PrimaryScreen from "./PrimaryScreen";
 import Router from "../router/Router";
 import SelectAppointmentScreen from "./SelectAppointmentScreen";
@@ -76,22 +75,37 @@ export default class EditAppointmentScreen extends SelectAppointmentScreen{
       console.log(`${appmt.id} - ${appmt.patient.getName()}`)
     });
 
-    const selectedID: number = Number(this.prompt('Número: '));
+    const input = this.prompt("Input editar: ");
 
-    if(selectedID === 0){
+    const selected: number | string = isNaN(Number(input)) 
+      ? (/[a-zA-Z]/.test(input) ? input : 'Erro: entrada inválida') 
+      : Number(input);
+
+    if (selected === 'Erro: entrada inválida') {
+      console.log('Erro: entrada inválida. Você inseriu letras e números juntos ou um formato inválido.');
+      this.selectAppointment();
+    } else if (typeof selected === 'string') {
+      console.log(`String inserida: ${selected}`);
+    } else {
+      console.log(`Número inserido: ${selected}`);
+    }
+
+
+    if(selected === 0){
       this.primaryScreen.startScreen();
     }
 
-    this.filterAppointment(selectedID, allAppointments);
+    this.filterAppointment(selected, allAppointments);
   }
 
-  filterAppointment(selectedID: number, allAppointments: IAppointment[]){
-    const selectedAppointment = allAppointments.find((appmt) => {
-      if (appmt.id === selectedID) { 
-        return true;
-      }
-      return false;
-    });
+   public filterAppointment(selected: number | string, allAppointments: IAppointment[]): void {
+    let selectedAppointment: IAppointment | undefined;
+  
+    if (typeof selected === "number") {
+      selectedAppointment = allAppointments.find((appmt) => appmt.id === selected);
+    } else if (typeof selected === "string") {
+      selectedAppointment = allAppointments.find((appmt) => appmt.patient.getName().toLowerCase() === selected.toLowerCase());
+    }
     
     if (selectedAppointment) {
       console.log("Consulta selecionada:", selectedAppointment);

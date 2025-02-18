@@ -10,6 +10,15 @@ import EditAppointmentScreen from "./EditAppointmentScreen";
 import DeleteAppointment from "./DeleteAppointmentScreen";
 import GeneratePDFScreen from "./GeneratePDFScreen";
 
+enum MenuOption {
+  NewAppointment = 1,
+  ListAppointments,
+  EditAppointment,
+  DeleteAppointment,
+  GeneratePDF,
+  Exit = 0
+}
+
 export default class PrimaryScreen {
   private appScr: AppointmentScreen;
   private listQr: ListScreen;
@@ -28,7 +37,7 @@ export default class PrimaryScreen {
     this.addScr = new AddressScreen(this);
     this.appScr = new AppointmentScreen(this, router, this.ptScr, this.addScr, this.mdIfScr, this.schScr);
     this.listQr = new ListScreen(this, router);
-    this.editAppScr = new EditAppointmentScreen(this, router, this.ptScr, this.addScr, this.mdIfScr, this.schScr)
+    this.editAppScr = new EditAppointmentScreen(this, router, this.ptScr, this.addScr, this.mdIfScr, this.schScr);
     this.delAppScr = new DeleteAppointment(router, this);
     this.genPDF = new GeneratePDFScreen(this, router);
   }
@@ -50,29 +59,33 @@ export default class PrimaryScreen {
     `);
 
     const opcao = prompt("Escolha uma opção: ");
-    if (isNaN(Number(opcao)) || Number(opcao) < 0 || Number(opcao) > 5) {
+    const option = Number(opcao);
+
+    if (isNaN(option) || !(option in MenuOption)) {
       console.log("Opção inválida.");
       this.startScreen();
       return;
     }
 
-    switch (Number(opcao)) {
-      case 1:
+    switch (option) {
+      case MenuOption.NewAppointment:
         this.appScr.startScreen();
         break;
-      case 2:
+      case MenuOption.ListAppointments:
         this.listQr.listAppointment();
         break;
-      case 3:
+      case MenuOption.EditAppointment:
+        console.log("aqui");
         this.editAppScr.selectAppointment();
         break;
-      case 4:
-        this.delAppScr.delete();
+      case MenuOption.DeleteAppointment:
+        console.log("aqui");
+        this.delAppScr.selectAppointment();
         break;
-      case 5:
+      case MenuOption.GeneratePDF:
         await this.genPDF.selectAppointment();
         break;
-      case 0:
+      case MenuOption.Exit:
         console.log("Saindo...");
         process.exit(0);
     }
