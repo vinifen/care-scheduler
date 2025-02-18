@@ -56,7 +56,6 @@ export default class GeneratePDFScreen extends SelectAppointmentScreen {
     }
     
     if (selectedAppointment) {
-      console.log("Consulta selecionada:", selectedAppointment);
       await this.generate(selectedAppointment);
     } else {
       console.log("Nenhuma consulta encontrada com esse ID.");
@@ -69,6 +68,4 @@ export default class GeneratePDFScreen extends SelectAppointmentScreen {
     await this.router.apCrtl.getGeneratePdf(appointment);
     this.selectAppointment();
   }
-
-
 }
